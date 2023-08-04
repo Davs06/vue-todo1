@@ -8,12 +8,13 @@
         clearable
         @keyup.enter="handleAddTarefa"
       ></v-text-field>
+      <!--v-model - levar dados para o atributo (inputs)  -->
     </v-col>
 
     <v-list flat subheader>
       <v-list-item-group multiple active-class="">
-        <div v-for="(tarefa, index) in $store.state.tarefas" :key="index">
-          <tarefa :tarefa="tarefa" />
+        <div v-for="(tarefa, index) in $store.state.tarefas" :key="index" @click="tarefa.concluido = !tarefa.concluido" >
+          <Tarefa :tarefa="tarefa" />
         </div>
       </v-list-item-group>
     </v-list>
@@ -21,14 +22,13 @@
 </template>
 
 <script>
-import tarefa from "../components/tarefas/TarefaView.vue";
+import Tarefa from "../components/tarefas/TarefaView.vue";
 
 export default {
-  // eslint-disable-next-line
-  name: "Home",
+  name: "TarefasView",
 
   components: {
-    tarefa,
+    Tarefa,
   },
 
   data() {
@@ -41,7 +41,7 @@ export default {
     handleAddTarefa() {
       this.$store.commit('addTarefas', this.inputForm);
       this.inputForm = null;
-    }
-  }
+    },
+  },
 };
 </script>
