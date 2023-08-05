@@ -25,8 +25,8 @@
     />
     
     <ModalDelete
-      v-if="items[0].modal"
-      @fechaModal="items[0].modal = false"
+      v-if="items[1].modal"
+      @fechaModal="items[1].modal = false"
       :tarefa="tarefa"
     />
   </div>
@@ -53,7 +53,7 @@ export default {
       {
         icon: "mdi-trash-can",
         title: "Excluir",
-        modal: true,
+        modal: false,
         click() {
           console.log("Excluir");
           this.modal = true;
