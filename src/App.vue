@@ -33,7 +33,7 @@
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(30,84,122,.5), rgba(128,208,199,.8)"
+          gradient="to top right, rgba(30,84,122,.5), rgba(128,208,199,.7)"
         ></v-img>
       </template>
 
@@ -53,7 +53,7 @@
     </v-app-bar>
 
     <v-main>
-      <router-view />
+      <router-view /> <!--tambem faz parte do router -->
     </v-main>
   </v-app>
 </template>
@@ -63,7 +63,7 @@ export default {
   data: () => ({
     drawer: null,
     items: [
-      { title: "TarefasView", icon: "mdi-view-dashboard", to: "/" },
+      { title: "TarefasView", icon: "mdi-view-dashboard", to: "/" }, // to: .... serve pra chamar o caminho no router 
       { title: "Sobre", icon: "mdi-help-box", to: "/sobre" },
     ],
   }),
