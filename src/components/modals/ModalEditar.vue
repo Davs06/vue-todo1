@@ -44,7 +44,7 @@ export default {
             title: this.title,
             id: this.tarefa.id
         }
-        this.$store.commit('editarTarefa',novaTarefa);
+        this.$store.dispatch('editarTarefa',novaTarefa);
         this.$emit('fechaModal')
     }
   }

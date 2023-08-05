@@ -37,9 +37,15 @@ export default {
     };
   },
 
+  created(){
+    this.$store.commit('buscaTarefas')
+  },
+
   methods: {
     handleAddTarefa() {
-      this.$store.commit('addTarefas', this.inputForm);
+      // this.$store.commit('addTarefas', this.inputForm);
+      this.$store.dispatch('addTarefas', this.inputForm);
+
       this.inputForm = null;
     },
   },
