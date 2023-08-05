@@ -17,7 +17,6 @@ export default new Vuex.Store({
   getters: {
   },
   mutations: {
-
     buscaTarefas(state) {
       db.collection('tarefas').get().then(tarefasDb => {
         state.tarefas = tarefasDb
@@ -32,28 +31,29 @@ export default new Vuex.Store({
         title,
         concluido: false
       })
-      // if (title) {
-      //   state.tarefas.push({
-      //     id: new Date().getTime(),
-      //     title,
-      //     concluido: false
-      //   })
-      // }
     },
 
-    removeTarefa(state, id) {
-      state.tarefas = state.tarefas.filter(tarefa => tarefa.id !== id)
-
-    },
-
-    editarTarefa(state, novaTarefa) {
-      let tarefa = state.tarefas.filter(tarefa => tarefa.id !== novaTarefa.id)[0]
-
-      tarefa.title = novaTarefa.title
-
-    }
+    
   },
   actions: {
+    async addTarefas({commit},title){
+      await commit('addTarefas',title)
+      await commit('buscaTarefas')
+    },
+
+    async updateTarefa({commit}, novaTarefa){
+      db.collection('tarefas').doc({id: novaTarefa.id}).update({
+        title: novaTarefa.title
+      }).then(() => {
+        commit('buscaTarefas')
+      })
+    },
+    
+    async removeTarefa({commit}, id){
+      db.collection('tarefas').doc({id}).delete().then(() => {
+        commit('buscaTarefas')
+      })
+    }
   },
   modules: {
   }
